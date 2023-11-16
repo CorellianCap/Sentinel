@@ -81,7 +81,7 @@ namespace Corellian.Sentinel.Tool
 
             tableView.Style.ColumnStyles.Add(tableView.Table.Columns["Status"], new TableView.ColumnStyle
             {
-                MinWidth = 10
+                MinWidth = 9
             });
 
             tableView.Style.ColumnStyles.Add(tableView.Table.Columns["AutoRestart"], new TableView.ColumnStyle
