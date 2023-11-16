@@ -2,12 +2,12 @@
 using System.CommandLine;
 using System.Data;
 using System.Diagnostics;
-using Corellian.Sentinel.Configuration;
+using Corellian.Sentinel.Tool.Configuration;
 using Terminal.Gui;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
-namespace Corellian.Sentinel
+namespace Corellian.Sentinel.Tool
 {
     public class SentinelProgram
     {

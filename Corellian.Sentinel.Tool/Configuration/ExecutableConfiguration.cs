@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Corellian.Sentinel.Configuration.Abstractions;
+﻿using Corellian.Sentinel.Tool.Configuration.Abstractions;
 
-namespace Corellian.Sentinel.Configuration
+namespace Corellian.Sentinel.Tool.Configuration
 {
     public class ExecutableConfiguration
     {
