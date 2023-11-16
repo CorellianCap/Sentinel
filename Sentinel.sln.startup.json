@@ -10,9 +10,9 @@
   "ListAllProjects": false,
 
   "MultiProjectConfigurations": {
-    "Sentinel": {
+    "Sentinel Tool": {
       "Projects": {
-        "Corellian.Sentinel": {
+        "Corellian.Sentinel.Tool": {
           "CommandLineArguments": ""
         }
       }

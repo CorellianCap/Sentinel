@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+
+    <PackageId>Corellian.Sentinel.Tool</PackageId>
+    <Title>Corellian Sentinel Tool</Title>
+    <Description>A simple tool to start and monitor processes.</Description>
 
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sentinel</ToolCommandName>
