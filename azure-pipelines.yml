@@ -46,7 +46,7 @@ steps:
     command: pack
     arguments: '--configuration $(buildConfiguration)'
     packagesToPack: >-
-      Corellian.Sentinel.Tool/CCorellian.Sentinel.Tool.csproj;
+      Corellian.Sentinel.Tool/Corellian.Sentinel.Tool.csproj;
     nobuild: true
 
 - task: PublishBuildArtifacts@1
