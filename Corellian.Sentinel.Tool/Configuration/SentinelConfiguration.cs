@@ -2,15 +2,23 @@
 {
     public class SentinelConfiguration
     {
-        public IReadOnlyDictionary<string, ApplicationConfiguration> Applications { get; set; }
+        public bool AutoRestart { get; }
+        public string? BuildCommand { get; }
 
-        private SentinelConfiguration(IReadOnlyDictionary<string, ApplicationConfiguration> applications)
+        public IReadOnlyDictionary<string, ApplicationConfiguration> Applications { get; }
+
+        public SentinelConfiguration(bool autoRestart, string? buildCommand, IReadOnlyDictionary<string, ApplicationConfiguration> applications)
         {
+            AutoRestart = autoRestart;
+            BuildCommand = buildCommand;
             Applications = applications;
         }
 
         public class Builder
         {
+            public bool AutoRestart { get; set; }
+            public string? BuildCommand { get; set; }
+
             public Dictionary<string, ExecutableConfiguration.Builder> Executables { get; set; }
             public Dictionary<string, ApplicationConfiguration.Builder> Applications { get; set; }
 
@@ -23,6 +31,8 @@
             public SentinelConfiguration Build()
             {
                 return new SentinelConfiguration(
+                    AutoRestart,
+                    BuildCommand,
                     Applications.ToDictionary(
                         a => a.Key,
                         a => a.Value.Build()));

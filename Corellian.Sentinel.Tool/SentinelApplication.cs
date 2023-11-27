@@ -24,14 +24,14 @@ namespace Corellian.Sentinel.Tool
         private DateTime _requestedStopTime;
 
 
-        public SentinelApplication(string name, ApplicationConfiguration configuration)
+        public SentinelApplication(string name, ApplicationConfiguration configuration, bool autoRestart)
         {
             Name = name;
             Configuration = configuration;
 
             CurrentProcess = null;
             Status = ApplicationStatus.Unknown;
-            AutoRestart = true;
+            AutoRestart = autoRestart;
             CpuUsage = null;
             MemoryUsage = null;
             Uptime = null;

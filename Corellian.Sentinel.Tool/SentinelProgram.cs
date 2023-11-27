@@ -42,7 +42,7 @@ namespace Corellian.Sentinel.Tool
 
             var configuration = deserializer.Deserialize<SentinelConfiguration.Builder>(mergingParser).Build();
 
-            var applications = configuration.Applications.Select(c => new SentinelApplication(c.Key, c.Value)).ToImmutableList();
+            var applications = configuration.Applications.Select(c => new SentinelApplication(c.Key, c.Value, configuration.AutoRestart)).ToImmutableList();
 
             Application.Init();
 
