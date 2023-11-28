@@ -134,10 +134,30 @@ namespace Corellian.Sentinel.Tool
                         Application.RequestStop();
                     })
                 }),
+                new MenuBarItem ("_Applications", new MenuItem [] {
+                    new MenuItem ("_Run All", "", () => {
+                        foreach (var application in applications)
+                        {
+                            if (application.Status == ApplicationStatus.Unknown || application.Status == ApplicationStatus.Stopped)
+                            {
+                                application.Start();
+                            }
+                        }
+                    }),
+                    new MenuItem ("_Stop All", "", () => {
+                        foreach (var application in applications)
+                        {
+                            if (application.Status == ApplicationStatus.Running)
+                            {
+                                application.Stop();
+                            }
+                        }
+                    }),
+                }),
             });
 
             var statusBar = new StatusBar(new StatusItem[] {
-                new StatusItem(Key.CtrlMask | Key.S, "~^S~ Stop/Start", () =>
+                new StatusItem(Key.CtrlMask | Key.S, "~^R~ Run", () =>
                 {
                     var selectedName = tableView.Table.Rows[tableView.SelectedRow][tableView.Table.Columns["Name"]].ToString();
 
@@ -147,12 +167,25 @@ namespace Corellian.Sentinel.Tool
                     {
                         application.Start();
                     }
-                    else if (application.Status == ApplicationStatus.Running)
+                }),
+                new StatusItem(Key.CtrlMask | Key.S, "~^S~ Stop", () =>
+                {
+                    var selectedName = tableView.Table.Rows[tableView.SelectedRow][tableView.Table.Columns["Name"]].ToString();
+
+                    var application = applications.Single(a => a.Name == selectedName);
+
+                    if (application.Status == ApplicationStatus.Running)
                     {
                         application.Stop();
                     }
                 }),
-                new StatusItem(Key.CtrlMask | Key.R, "~^R~ Restart", () => {}),
+                //new StatusItem(Key.CtrlMask | Key.R, "~^R~ Restart", () =>
+                //{
+                //    var selectedName = tableView.Table.Rows[tableView.SelectedRow][tableView.Table.Columns["Name"]].ToString();
+
+                //    var application = applications.Single(a => a.Name == selectedName);
+
+                //}),
                 new StatusItem(Key.CtrlMask | Key.Q, "~^Q~ Quit", () =>
                 {
                     Application.RequestStop();
