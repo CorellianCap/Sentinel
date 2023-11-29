@@ -157,7 +157,7 @@ namespace Corellian.Sentinel.Tool
             });
 
             var statusBar = new StatusBar(new StatusItem[] {
-                new StatusItem(Key.CtrlMask | Key.S, "~^R~ Run", () =>
+                new StatusItem(Key.CtrlMask | Key.R, "~^R~ Run", () =>
                 {
                     var selectedName = tableView.Table.Rows[tableView.SelectedRow][tableView.Table.Columns["Name"]].ToString();
 
