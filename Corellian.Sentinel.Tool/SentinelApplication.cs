@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using Corellian.DeathStar;
+﻿using Corellian.DeathStar;
 using Corellian.Sentinel.Tool.Configuration;
+using System.Diagnostics;
 
 namespace Corellian.Sentinel.Tool
 {
@@ -68,7 +68,7 @@ namespace Corellian.Sentinel.Tool
 
             CurrentProcess = Process.Start(processStartInfo);
             _lastStartTime = DateTime.UtcNow;
-            
+
             if (CurrentProcess is { HasExited: false })
             {
                 Status = ApplicationStatus.Starting;
@@ -95,6 +95,10 @@ namespace Corellian.Sentinel.Tool
 
                 _lastStopTime = DateTime.UtcNow;
                 _requestedStopTime = DateTime.UtcNow;
+            }
+            else
+            {
+                AutoRestart = false;
             }
         }
 

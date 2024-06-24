@@ -1,8 +1,8 @@
-﻿using System.Collections.Immutable;
+﻿using Corellian.Sentinel.Tool.Configuration;
+using System.Collections.Immutable;
 using System.CommandLine;
 using System.Data;
 using System.Diagnostics;
-using Corellian.Sentinel.Tool.Configuration;
 using Terminal.Gui;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
@@ -14,11 +14,11 @@ namespace Corellian.Sentinel.Tool
         public static async Task<int> Main(string[] args)
         {
             var fileOption = new Option<FileInfo>(
-                aliases: new [] { "--config", "-c" },
+                aliases: new[] { "--config", "-c" },
                 description: "The config file.")
-                {
-                    IsRequired = true
-                };
+            {
+                IsRequired = true
+            };
 
             var rootCommand = new RootCommand("Corellian Sentinel")
             {
@@ -147,10 +147,7 @@ namespace Corellian.Sentinel.Tool
                     new MenuItem ("_Stop All", "", () => {
                         foreach (var application in applications)
                         {
-                            if (application.Status == ApplicationStatus.Running)
-                            {
-                                application.Stop();
-                            }
+                            application.Stop();
                         }
                     }),
                 }),
@@ -168,16 +165,13 @@ namespace Corellian.Sentinel.Tool
                         application.Start();
                     }
                 }),
-                new StatusItem(Key.CtrlMask | Key.S, "~^S~ Stop", () =>
+                new StatusItem(Key.CtrlMask | Key.S, "~^T~ Stop", () =>
                 {
                     var selectedName = tableView.Table.Rows[tableView.SelectedRow][tableView.Table.Columns["Name"]].ToString();
 
                     var application = applications.Single(a => a.Name == selectedName);
 
-                    if (application.Status == ApplicationStatus.Running)
-                    {
-                        application.Stop();
-                    }
+                    application.Stop();
                 }),
                 //new StatusItem(Key.CtrlMask | Key.R, "~^R~ Restart", () =>
                 //{
@@ -188,6 +182,11 @@ namespace Corellian.Sentinel.Tool
                 //}),
                 new StatusItem(Key.CtrlMask | Key.Q, "~^Q~ Quit", () =>
                 {
+                    foreach (var application in applications)
+                    {
+                        application.Stop();
+                    }
+
                     Application.RequestStop();
                 })
             });
