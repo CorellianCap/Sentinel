@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  buildDotNetVersion: '6'
+  buildDotNetVersion: '10'
 
 steps:
 - checkout: self
